@@ -23,10 +23,24 @@ In this challenge, you are to build a Smurfs village utilizing context or Redux 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] What problem does the context API help solve?
+
+The Context API helps solve issues of state management; parts of an app-wide state can be passed to individual components without having to use "prop drilling" and pass each bit of state through every layer.
+
 - [ ] In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+
+The store is a single place where multiple aspects of state can be stored; since components relying on state can all pull from the store, it is the "single source of truth" about app-wide state that components can refer to directly. Reducers combine multiple ways of interacting with state into one place; actions keep track of ways that components may need to have their calls to the reducer handled.
+
 - [ ] What is the difference between Application state and Component state? When would be a good time to use one over the other?
+
+Component state is tracked by and visible to only a particular component; application state is tracked app-wide (e.g. by a store or context API). State that only one component will need access to (e.g. the current state of a form) can be kept in component state to minimize mess; information that may need to be seen or adjusted by multiple components, especially components in different parts of the app tree, can be kept in the application state.
+
 - [ ] Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
+
+Redux-thunk allows asynchronous actions in redux. With redux-thunk the action creators can become more complicated, as the actions are where the asynchronous behavior is handled.
+
 - [ ] What is your favorite state management system you've learned and this sprint? Please explain why!
+
+So far I like Redux; I like being able to set up state in one place and then have only the component that needs it connect to the store instead of having to use provider/consumer elements in the parents of the component that needs state. I'm still having trouble getting the context API to work...
 
 ## Project Set Up
 

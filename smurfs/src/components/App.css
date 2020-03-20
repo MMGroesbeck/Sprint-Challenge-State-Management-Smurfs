@@ -1,3 +1,28 @@
 .App {
   text-align: center;
 }
+
+.error {
+  color: red;
+}
+
+.smurfs-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  border: 1px black solid;
+  background-color: whitesmoke;
+  align-items: center;
+  margin: 5%;
+  padding: 3%;
+}
+
+.smurf-card {
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: seashell;
+  border: 1px black dotted;
+  padding: 3%;
+  margin: 3%;
+  align-items: center;
+}
