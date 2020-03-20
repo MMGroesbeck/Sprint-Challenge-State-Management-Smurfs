@@ -6,6 +6,19 @@
   color: red;
 }
 
+.smurf-header {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.smurf-form {
+  display: flex;
+  flex-flow: column nowrap;
+  border: 1px black dotted;
+  align-items: center;
+}
+
 .smurfs-list {
   display: flex;
   flex-flow: row wrap;
