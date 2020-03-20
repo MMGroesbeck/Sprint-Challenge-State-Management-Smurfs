@@ -27,20 +27,40 @@ export const addSmurf = smurf => dispatch => {
         id: smurf.id
     })
         .then(res => {
+            dispatch ({ type: GETTING_SMURFS });
+            console.log("Getting.")
             axios.get("http://localhost:3333/smurfs")
-            .then(resp => {
-                dispatch({ type: UPDATE_SMURFS, payload: resp.data });
-            })
-            .catch(er => {
-                console.error("Update error: ",er);
-                dispatch({ type: SET_ERROR, payload: "Error adding smurf" });
-            })
+                    .then(resp => {
+                        dispatch({ type: UPDATE_SMURFS, payload: resp.data });
+                    })
+                    .catch(er => {
+                        console.error("Update error: ",er);
+                        dispatch({ type: SET_ERROR, payload: "Error adding smurf" });
+                    })
         })
         .catch(err => {
             console.error("Post error: ", err)
             dispatch({ type: SET_ERROR, payload:"Error updating smurfs."});
         })
 }
-export const deleteSmurf = smurf => {
-    console.log("Not implemented yet.");
+export const deleteSmurf = smurf => dispatch => {
+    console.log("Deleting: ", smurf);
+    axios.delete(`http://localhost:3333/smurfs/${smurf.id}`)
+        .then(r => {
+            console.log(".then reached");
+            dispatch ({ type: GETTING_SMURFS });
+            console.log("Getting.")
+            axios.get("http://localhost:3333/smurfs")
+                    .then(resp => {
+                        dispatch({ type: UPDATE_SMURFS, payload: resp.data });
+                    })
+                    .catch(er => {
+                        console.error("Update error: ",er);
+                        dispatch({ type: SET_ERROR, payload: "Error adding smurf" });
+                    })
+        })
+        .catch(e => {
+            console.error("Delete error: ", e);
+            dispatch({ type: SET_ERROR, payload:"Error deleting smurf."});
+        })
 }
