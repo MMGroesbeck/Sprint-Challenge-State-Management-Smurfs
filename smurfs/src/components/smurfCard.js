@@ -11,15 +11,14 @@ const SmurfCard = props => {
         e.preventDefault();
         props.deleteSmurf(props.smurf);
     };
-    const toggleEdit = e => {
-        e.preventDefault();
+    const toggleEdit = () => {
         setEditing(!editing);
     }
     return (
         <div className="smurf-card">
             <h2>{props.smurf.name}</h2>
-            <p>Height:{` ${props.smurf.height}`}</p>
             <p>Age:{` ${props.smurf.age}`}</p>
+            <p>Height:{` ${props.smurf.height}`}</p>
             <button onClick={handleDeleteSmurf}>Delete</button>
             {editing ? (
                 <SmurfEdit smurf={props.smurf} cancelEdit={toggleEdit} />
