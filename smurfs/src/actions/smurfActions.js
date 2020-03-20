@@ -64,3 +64,19 @@ export const deleteSmurf = smurf => dispatch => {
             dispatch({ type: SET_ERROR, payload:"Error deleting smurf."});
         })
 }
+export const editSmurf = smurf => dispatch => {
+    console.log("Editing: ", smurf);
+    let uSmurf = { id: smurf.id };
+    smurf.name && (uSmurf = { ...uSmurf, name: smurf.name });
+    smurf.age && (uSmurf = { ...uSmurf, age: smurf.age });
+    smurf.height && (uSmurf = { ...uSmurf, height: smurf.height });
+    axios.put(`http://localhost:3333/smurfs/${smurf.id}`, uSmurf)
+        .then(res => {
+            dispatch({ type: UPDATE_SMURFS,
+            payload: res.data});
+        })
+        .catch(err => {
+            console.error("Edit error: ", err);
+            dispatch({ type: SET_ERROR, payload:"Error editing smurf."});
+        })
+}

@@ -1,19 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from "react-redux";
 
 import { deleteSmurf } from "../actions/smurfActions";
 
+import SmurfEdit from "./SmurfEdit";
+
 const SmurfCard = props => {
+    const [ editing, setEditing ] = useState(false);
     const handleDeleteSmurf = e => {
         e.preventDefault();
         props.deleteSmurf(props.smurf);
     };
+    const toggleEdit = e => {
+        e.preventDefault();
+        setEditing(!editing);
+    }
     return (
         <div className="smurf-card">
             <h2>{props.smurf.name}</h2>
             <p>Height:{` ${props.smurf.height}`}</p>
             <p>Age:{` ${props.smurf.age}`}</p>
             <button onClick={handleDeleteSmurf}>Delete</button>
+            {editing ? (
+                <SmurfEdit smurf={props.smurf} cancelEdit={toggleEdit} />
+            ) : (
+                <button onClick={toggleEdit}>Edit</button>
+            ) }
         </div>
     )
 }
